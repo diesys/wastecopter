@@ -1,133 +1,135 @@
-var config = {
-    type: Phaser.WEBGL,
-    width: 800,
-    height: 600,
-    backgroundColor: '#2d2d2d',
-    parent: 'phaser-example',
-    scene: {
-        preload: preload,
-        create: create,
-        update: update
-    }
-};
 
-var bullets1;
-var bullets2;
-var ship;
-var speed;
-var stats;
-var lastFired = 0;
-var isDown = false;
-var mouseX = 0;
-var mouseY = 0;
+var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
 
-var game = new Phaser.Game(config);
+function preload() {
 
-function preload ()
-{
-    this.load.image('ship', 'assets/ship.png');
-    this.load.image('bullet1', 'assets/bullet11.png');
+    // game.load.image('space', 'assets/ship.png');
+    game.load.image('bullet', 'assets/bullet11.png');
+    game.load.image('ship', 'assets/ship.png');
+
 }
 
-function create ()
-{
-    var Bullet = new Phaser.Class({
+var sprite;
+var cursors;
 
-        Extends: Phaser.GameObjects.Image,
+var bullet;
+var bullets;
+var bulletTime = 0;
 
-        initialize:
+function create() {
 
-        function Bullet (scene)
-        {
-            Phaser.GameObjects.Image.call(this, scene, 0, 0, 'bullet1');
+    //  This will run in Canvas mode, so let's gain a little speed and display
+    // game.renderer.clearBeforeRender = false;
+    // game.renderer.roundPixels = true;
 
-            this.incX = 0;
-            this.incY = 0;
-            this.lifespan = 0;
+    //  We need arcade physics
+    game.physics.startSystem(Phaser.Physics.ARCADE);
 
-            this.speed = Phaser.Math.GetSpeed(600, 1);
-        },
+    // //  A spacey background
+    // game.add.tileSprite(0, 0, game.width, game.height, 'space');
 
-        fire: function (x, y)
-        {
-            this.setActive(true);
-            this.setVisible(true);
+    //  Our ships bullets
+    bullets = game.add.group();
+    bullets.enableBody = true;
+    bullets.physicsBodyType = Phaser.Physics.ARCADE;
 
-            //  Bullets fire from the middle of the screen to the given x/y
-            this.setPosition(400, 300);
+    //  All 40 of them
+    bullets.createMultiple(40, 'bullet');
+    bullets.setAll('anchor.x', 0.5);
+    bullets.setAll('anchor.y', 0.5);
 
-            var angle = Phaser.Math.Angle.Between(x, y, 400, 300);
+    //  Our player ship
+    sprite = game.add.sprite(300, 300, 'ship');
+    sprite.anchor.set(0.5);
 
-            this.setRotation(angle);
+    //  and its physics settings
+    game.physics.enable(sprite, Phaser.Physics.ARCADE);
 
-            this.incX = Math.cos(angle);
-            this.incY = Math.sin(angle);
+    sprite.body.drag.set(100);
+    sprite.body.maxVelocity.set(200);
 
-            this.lifespan = 1000;
-        },
+    //  Game input
+    cursors = game.input.keyboard.createCursorKeys();
+    game.input.keyboard.addKeyCapture([ Phaser.Keyboard.SPACEBAR ]);
 
-        update: function (time, delta)
-        {
-            this.lifespan -= delta;
+    sprite.body.angularDrag = 100
+}
 
-            this.x -= this.incX * (this.speed * delta);
-            this.y -= this.incY * (this.speed * delta);
+function update() {
 
-            if (this.lifespan <= 0)
-            {
-                this.setActive(false);
-                this.setVisible(false);
-            }
-        }
-
-    });
-
-    bullets1 = this.add.group({
-        classType: Bullet,
-        maxSize: 50,
-        runChildUpdate: true
-    });
     
-    ship = this.add.sprite(400, 300, 'ship').setDepth(1);
+    if (cursors.up.isDown)
+    {
+        game.physics.arcade.accelerationFromRotation(sprite.rotation, 200, sprite.body.acceleration);
+    }
+    else
+    {
+        sprite.body.acceleration.set(0);
+    }
 
-    this.input.on('pointerdown', function (pointer) {
+    if (cursors.left.isDown)
+    {
+        sprite.body.angularAcceleration = -200;
+    }
+    else if (cursors.right.isDown)
+    {
+        sprite.body.angularAcceleration = 200;
+    }
+    else
+    {
+        sprite.body.angularAcceleration = 0;
+    }
 
-        isDown = true;
-        mouseX = pointer.x;
-        mouseY = pointer.y;
+    if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR))
+    {
+        fireBullet();
+    }
 
-    });
+    screenWrap(sprite);
 
-    this.input.on('pointermove', function (pointer) {
-
-        mouseX = pointer.x;
-        mouseY = pointer.y;
-
-    });
-
-    this.input.on('pointerup', function (pointer) {
-
-        isDown = false;
-
-    });
+    bullets.forEachExists(screenWrap, this);
 
 }
 
-function update (time, delta)
-{
+function fireBullet () {
 
-    if (isDown && time > lastFired)
+    if (game.time.now > bulletTime)
     {
-        var bullet = bullets1.get();
+        bullet = bullets.getFirstExists(false);
 
         if (bullet)
         {
-            bullet.fire(mouseX, mouseY);
-
-            lastFired = time + 50;
+            bullet.reset(sprite.body.x + 16, sprite.body.y + 16);
+            bullet.lifespan = 2000;
+            bullet.rotation = sprite.rotation;
+            game.physics.arcade.velocityFromRotation(sprite.rotation, 400, bullet.body.velocity);
+            bulletTime = game.time.now + 50;
         }
     }
 
-    ship.setRotation(Phaser.Math.Angle.Between(mouseX, mouseY, ship.x, ship.y) - Math.PI / 2);    
+}
 
+function screenWrap (sprite) {
+
+    if (sprite.x < 0)
+    {
+        sprite.x = game.width;
+    }
+    else if (sprite.x > game.width)
+    {
+        sprite.x = 0;
+    }
+
+    if (sprite.y < 0)
+    {
+        sprite.y = game.height;
+    }
+    else if (sprite.y > game.height)
+    {
+        sprite.y = 0;
+    }
+
+}
+
+function render() {
 }
