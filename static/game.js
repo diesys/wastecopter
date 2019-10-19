@@ -7,7 +7,8 @@ function preload() {
     // game.load.image('ship', 'assets/ship.png');
     game.load.image('garb', 'assets/garb.png');
     game.load.image('ship', 'assets/quadcopter.png');
-    game.load.image('boat', 'assets/boat.png');
+    // game.load.image('boat', 'assets/boat.png');
+    game.load.image('boat', 'assets/platform.png');
 
 }
 
