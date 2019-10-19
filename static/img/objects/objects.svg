@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 5da689c313, 2019-01-14"
+   sodipodi:docname="objects.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.175"
+     inkscape:cx="263.35193"
+     inkscape:cy="1027.3651"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g1272"
+       inkscape:export-xdpi="101.29198"
+       inkscape:export-ydpi="101.29198">
+      <image
+         sodipodi:absref="/home/jake/code/NASA_LIFO/lifo-spaceapp/static/img/objects/glass152.png"
+         xlink:href="glass152.png"
+         y="49.817448"
+         x="-33.351994"
+         id="image856"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="15.24"
+         width="30.734001"
+         transform="rotate(-13.373575)" />
+      <image
+         sodipodi:absref="/home/jake/code/NASA_LIFO/lifo-spaceapp/static/img/objects/glass153.png"
+         xlink:href="glass153.png"
+         y="61.442852"
+         x="-22.626253"
+         id="image867"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="19.815557"
+         width="32.078465"
+         transform="rotate(30.063109)" />
+      <image
+         sodipodi:absref="/home/jake/code/NASA_LIFO/lifo-spaceapp/static/img/objects/glass155.png"
+         xlink:href="glass155.png"
+         y="-73.555199"
+         x="59.749546"
+         id="image889"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="13.619946"
+         width="11.856649"
+         transform="rotate(84.027117)" />
+      <image
+         sodipodi:absref="/home/jake/code/NASA_LIFO/lifo-spaceapp/static/img/objects/glass154.png"
+         xlink:href="glass154.png"
+         y="14.102896"
+         x="50.507378"
+         id="image878"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="21.674665"
+         width="25.061333"
+         transform="rotate(37.981721)" />
+      <image
+         sodipodi:absref="/home/jake/code/NASA_LIFO/lifo-spaceapp/static/img/objects/metal1.png"
+         xlink:href="metal1.png"
+         y="50.360531"
+         x="102.85082"
+         id="image900"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="16.030867"
+         width="16.240887" />
+      <image
+         sodipodi:absref="/home/jake/code/NASA_LIFO/lifo-spaceapp/static/img/objects/metal2.png"
+         xlink:href="metal2.png"
+         y="51.217762"
+         x="179.20685"
+         id="image911"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="14.316402"
+         width="16.34977" />
+      <image
+         sodipodi:absref="/home/jake/code/NASA_LIFO/lifo-spaceapp/static/img/objects/metal3.png"
+         xlink:href="metal3.png"
+         y="50.141598"
+         x="206.66664"
+         id="image922"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="16.468731"
+         width="37.238201" />
+      <image
+         sodipodi:absref="/home/jake/code/NASA_LIFO/lifo-spaceapp/static/img/objects/metal4.png"
+         xlink:href="metal4.png"
+         y="50.368916"
+         x="141.25317"
+         id="image933"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="16.014097"
+         width="16.014097" />
+      <image
+         sodipodi:absref="/home/jake/code/NASA_LIFO/lifo-spaceapp/static/img/objects/cadborad133.png"
+         xlink:href="cadborad133.png"
+         y="52.737343"
+         x="-271.1925"
+         id="image823"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="11.43"
+         width="16.848667" />
+      <image
+         sodipodi:absref="/home/jake/code/NASA_LIFO/lifo-spaceapp/static/img/objects/cardboard132.png"
+         xlink:href="cardboard132.png"
+         y="47.530327"
+         x="-245.97473"
+         id="image834"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="21.844"
+         width="26.161999" />
+      <image
+         sodipodi:absref="/home/jake/code/NASA_LIFO/lifo-spaceapp/static/img/objects/cardboard154.png"
+         xlink:href="cardboard154.png"
+         y="46.006325"
+         x="-207.74785"
+         id="image845"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="24.892"
+         width="26.415998" />
+      <image
+         sodipodi:absref="/home/jake/code/NASA_LIFO/lifo-spaceapp/static/img/objects/paper1.png"
+         xlink:href="paper1.png"
+         y="50.070335"
+         x="-132.56407"
+         id="image944"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="16.764"
+         width="29.464001" />
+      <image
+         sodipodi:absref="/home/jake/code/NASA_LIFO/lifo-spaceapp/static/img/objects/paper2.png"
+         xlink:href="paper2.png"
+         y="45.709999"
+         x="-328.93518"
+         id="image955"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="25.484667"
+         width="34.713333" />
+      <image
+         sodipodi:absref="/home/jake/code/NASA_LIFO/lifo-spaceapp/static/img/objects/paper3.png"
+         xlink:href="paper3.png"
+         y="49.181343"
+         x="-166.47296"
+         id="image966"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="18.542"
+         width="20.574001" />
+      <image
+         sodipodi:absref="/home/jake/code/NASA_LIFO/lifo-spaceapp/static/img/objects/paper4.png"
+         xlink:href="paper4.png"
+         y="49.323143"
+         x="-97.829346"
+         id="image977"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="18.258371"
+         width="35.633286" />
+      <image
+         sodipodi:absref="/home/jake/code/NASA_LIFO/lifo-spaceapp/static/img/objects/paper5.png"
+         xlink:href="paper5.png"
+         y="46.514336"
+         x="-282.76227"
+         id="image988"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="23.875999"
+         width="23.029333" />
+      <image
+         sodipodi:absref="/home/jake/code/NASA_LIFO/lifo-spaceapp/static/img/objects/plastic1.png"
+         xlink:href="plastic1.png"
+         y="52.623798"
+         x="478.05353"
+         id="image999"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="10.752666"
+         width="31.411333" />
+      <image
+         sodipodi:absref="/home/jake/code/NASA_LIFO/lifo-spaceapp/static/img/objects/plastic2.png"
+         xlink:href="plastic2.png"
+         y="51.318146"
+         x="400.3089"
+         id="image1010"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="13.36397"
+         width="33.485027" />
+      <image
+         sodipodi:absref="/home/jake/code/NASA_LIFO/lifo-spaceapp/static/img/objects/plastic3.png"
+         xlink:href="plastic3.png"
+         y="50.561565"
+         x="526.5343"
+         id="image1021"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="14.877145"
+         width="11.15786" />
+      <image
+         sodipodi:absref="/home/jake/code/NASA_LIFO/lifo-spaceapp/static/img/objects/plastic4.png"
+         xlink:href="plastic4.png"
+         y="50.888134"
+         x="439.10696"
+         id="image1032"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="14.224"
+         width="32.596664" />
+      <image
+         sodipodi:absref="/home/jake/code/NASA_LIFO/lifo-spaceapp/static/img/objects/trash1.png"
+         xlink:href="trash1.png"
+         y="48.771465"
+         x="369.04553"
+         id="image1043"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="18.457335"
+         width="19.303999" />
+      <image
+         sodipodi:absref="/home/jake/code/NASA_LIFO/lifo-spaceapp/static/img/objects/trash2.png"
+         xlink:href="trash2.png"
+         y="47.384525"
+         x="255.11896"
+         id="image1054"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="21.59"
+         width="18.372667" />
+      <image
+         sodipodi:absref="/home/jake/code/NASA_LIFO/lifo-spaceapp/static/img/objects/trash3.png"
+         xlink:href="trash3.png"
+         y="49.189739"
+         x="330.94565"
+         id="image1065"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="19.557999"
+         width="18.796" />
+      <image
+         sodipodi:absref="/home/jake/code/NASA_LIFO/lifo-spaceapp/static/img/objects/trash4.png"
+         xlink:href="trash4.png"
+         y="48.67065"
+         x="295.1741"
+         id="image1076"
+         style="image-rendering:optimizeQuality"
+         preserveAspectRatio="none"
+         height="19.896666"
+         width="13.631333" />
+    </g>
+    <g
+       id="g1186">
+      <rect
+         style="opacity:1;fill:#6b6b6b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.10690761;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill"
+         id="rect1138"
+         width="38.353882"
+         height="28.157362"
+         x="-61.864353"
+         y="75.973701" />
+      <rect
+         y="75.973701"
+         x="-23.764353"
+         height="28.157362"
+         width="38.353882"
+         id="rect1140"
+         style="opacity:1;fill:#9f9f9f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.10690761;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill" />
+      <rect
+         style="opacity:1;fill:#6b6b6b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.10690761;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill"
+         id="rect1142"
+         width="38.353882"
+         height="28.157362"
+         x="14.589529"
+         y="75.973701" />
+      <rect
+         y="75.973701"
+         x="52.943413"
+         height="28.157362"
+         width="38.353882"
+         id="rect1144"
+         style="opacity:1;fill:#9f9f9f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.10690761;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill" />
+      <rect
+         style="opacity:1;fill:#6b6b6b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.10690761;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill"
+         id="rect1148"
+         width="38.353882"
+         height="28.157362"
+         x="91.297295"
+         y="75.973701" />
+      <rect
+         y="75.973701"
+         x="129.65118"
+         height="28.157362"
+         width="38.353882"
+         id="rect1150"
+         style="opacity:1;fill:#9f9f9f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.10690761;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill" />
+      <rect
+         style="opacity:1;fill:#6b6b6b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.10690761;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill"
+         id="rect1152"
+         width="38.353882"
+         height="28.157362"
+         x="168.00507"
+         y="75.973701" />
+      <rect
+         style="opacity:1;fill:#9f9f9f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.10690761;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill"
+         id="rect1156"
+         width="38.353882"
+         height="28.157362"
+         x="206.35895"
+         y="75.973701" />
+    </g>
+    <rect
+       style="opacity:1;fill:#6b6b6b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.10690761;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill"
+       id="rect1188"
+       width="38.353882"
+       height="28.157362"
+       x="244.71283"
+       y="75.973701" />
+    <rect
+       y="75.973701"
+       x="282.81284"
+       height="28.157362"
+       width="38.353882"
+       id="rect1190"
+       style="opacity:1;fill:#9f9f9f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.10690761;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill" />
+    <rect
+       style="opacity:1;fill:#6b6b6b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.10690761;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill"
+       id="rect1192"
+       width="38.353882"
+       height="28.157362"
+       x="321.16672"
+       y="75.973701" />
+    <rect
+       y="75.973701"
+       x="359.5206"
+       height="28.157362"
+       width="38.353882"
+       id="rect1194"
+       style="opacity:1;fill:#9f9f9f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.10690761;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill" />
+    <rect
+       style="opacity:1;fill:#6b6b6b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.10690761;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill"
+       id="rect1196"
+       width="38.353882"
+       height="28.157362"
+       x="397.87448"
+       y="75.973701" />
+    <rect
+       y="75.973701"
+       x="436.22836"
+       height="28.157362"
+       width="38.353882"
+       id="rect1198"
+       style="opacity:1;fill:#9f9f9f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.10690761;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill" />
+    <rect
+       style="opacity:1;fill:#6b6b6b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.10690761;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill"
+       id="rect1200"
+       width="38.353882"
+       height="28.157362"
+       x="474.58224"
+       y="75.973701" />
+    <rect
+       style="opacity:1;fill:#9f9f9f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.10690761;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill"
+       id="rect1202"
+       width="38.353882"
+       height="28.157362"
+       x="512.93616"
+       y="75.973701" />
+    <g
+       id="g1222"
+       transform="translate(-306.57718)">
+      <rect
+         style="opacity:1;fill:#9f9f9f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.10690761;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill"
+         id="rect1208"
+         width="38.353882"
+         height="28.157362"
+         x="-23.764353"
+         y="75.973701" />
+      <rect
+         y="75.973701"
+         x="14.589529"
+         height="28.157362"
+         width="38.353882"
+         id="rect1210"
+         style="opacity:1;fill:#6b6b6b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.10690761;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill" />
+      <rect
+         style="opacity:1;fill:#9f9f9f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.10690761;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill"
+         id="rect1212"
+         width="38.353882"
+         height="28.157362"
+         x="52.943413"
+         y="75.973701" />
+      <rect
+         y="75.973701"
+         x="91.297295"
+         height="28.157362"
+         width="38.353882"
+         id="rect1214"
+         style="opacity:1;fill:#6b6b6b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.10690761;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill" />
+      <rect
+         style="opacity:1;fill:#9f9f9f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.10690761;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill"
+         id="rect1216"
+         width="38.353882"
+         height="28.157362"
+         x="129.65118"
+         y="75.973701" />
+      <rect
+         y="75.973701"
+         x="168.00507"
+         height="28.157362"
+         width="38.353882"
+         id="rect1218"
+         style="opacity:1;fill:#6b6b6b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.10690761;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill" />
+      <rect
+         y="75.973701"
+         x="206.35895"
+         height="28.157362"
+         width="38.353882"
+         id="rect1220"
+         style="opacity:1;fill:#9f9f9f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.10690761;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill" />
+    </g>
+  </g>
+</svg>
