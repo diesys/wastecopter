@@ -2,7 +2,7 @@ var config = {
     type: Phaser.WEBGL,
     width: 800,
     height: 600,
-    backgroundColor: '#2d2d2d',
+    backgroundColor: '#1366a9',
     parent: 'phaser-example',
     scene: {
         preload: preload,
@@ -25,7 +25,8 @@ var game = new Phaser.Game(config);
 
 function preload ()
 {
-    this.load.image('ship', 'assets/ship.png');
+    // this.load.image('ship', 'assets/ship.png');
+    this.load.image('ship', 'assets/quadricopter.png');
     this.load.image('bullet1', 'assets/bullet11.png');
 }
 
