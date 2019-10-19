@@ -17,6 +17,9 @@ var bullet;
 var bullets;
 var bulletTime = 0;
 
+
+var garb;
+
 function create() {
 
     //  This will run in Canvas mode, so let's gain a little speed and display
@@ -41,7 +44,10 @@ function create() {
     bullets.setAll('anchor.x', 0.5);
     bullets.setAll('anchor.y', 0.5);
 
-        garbs = []
+
+
+
+    garbs = []
     
     for (i = 0; i < 10; i++) {
 	var min_x = 50;
@@ -71,12 +77,23 @@ function create() {
     }
 
 
+    garb = garbs[0]
+    
     //  Our player ship
     sprite = game.add.sprite(300, 300, 'ship');
     sprite.anchor.set(0.5);
 
     //  and its physics settings
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
+
+    // enable for garb
+    // game.physics.enable(garb, Phaser.Physics.ARCADE);
+    // garb.body.immovable=true
+
+    game.physics.enable([sprite, garb], Phaser.Physics.ARCADE);
+
+    // garb.body.immovable=true
+    // garb.body.moves=false
 
     sprite.body.drag.set(100);
     sprite.body.maxVelocity.set(200);
@@ -87,20 +104,25 @@ function create() {
 
     sprite.body.angularDrag = 100
 
+    sprite.body.setCircle(50, 0, 0) 
+  
+
+    sprite.status = "IDLE"
+    sprite.garb = null
     
-
-
 }
 
 function update() {
+
+    // game.physics.arcade.collide(sprite, garb, function() { console.log('hit')}, null, this);
 
     
     if (cursors.up.isDown)
     {
         game.physics.arcade.accelerationFromRotation(sprite.rotation, 200, sprite.body.acceleration);
-    }
-    else
-    {
+    } else if (cursors.down.isDown) {
+	game.physics.arcade.accelerationFromRotation(sprite.rotation, -200, sprite.body.acceleration);
+    } else {
         sprite.body.acceleration.set(0);
     }
 
@@ -117,16 +139,43 @@ function update() {
         sprite.body.angularAcceleration = 0;
     }
 
+    const LEAVE_RADIOUS=50
+    const PICK_RADIOUS=30
+    
     if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR))
     {
-        fireBullet();
+	if (sprite.status == "PICK")
+	    sprite.status = "LEAVING"
     }
 
+    if (sprite.status == "LEAVING") {
+	d = Math.sqrt((sprite.x - sprite.garb.x)**2+(sprite.y - sprite.garb.y)**2)
+
+	if (d > LEAVE_RADIOUS) {
+	    sprite.status = "IDLE"
+	    sprite.garb = null
+	}
+    }
+    
     screenWrap(sprite);
 
-    bullets.forEachExists(screenWrap, this);
+    // bullets.forEachExists(screenWrap, this);
 
+    for (var g in garbs) {
+	d = Math.sqrt((sprite.x - garbs[g].x)**2+(sprite.y - garbs[g].y)**2)
+
+	if (sprite.status == "IDLE" && (d < PICK_RADIOUS)) {
+	    sprite.garb = garb
+	    sprite.status = "PICK"
+	}
+    }
+
+    if (sprite.status == "PICK" && sprite.garb) {
+	sprite.garb.x = sprite.x
+	sprite.garb.y = sprite.y
+    }
 }
+
 
 function fireBullet () {
 
@@ -169,4 +218,9 @@ function screenWrap (sprite) {
 }
 
 function render() {
+
+    game.debug.bodyInfo(sprite, 32, 32)
+    // game.debug.bodyInfo(garb, 32, 32)
+    game.debug.body(sprite);
+    game.debug.body(garb);
 }
