@@ -1,4 +1,3 @@
-
 var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
 
 function preload() {
@@ -7,6 +6,7 @@ function preload() {
     game.load.image('bullet', 'assets/bullet11.png');
     game.load.image('ship', 'assets/ship.png');
     game.load.image('garb', 'assets/garb.png');
+    game.load.image('ship', 'assets/quadcopter.png');
 
 }
 
@@ -22,6 +22,8 @@ function create() {
     //  This will run in Canvas mode, so let's gain a little speed and display
     // game.renderer.clearBeforeRender = false;
     game.renderer.roundPixels = true;
+
+    game.stage.backgroundColor = '#1366a9';
 
     //  We need arcade physics
     game.physics.startSystem(Phaser.Physics.ARCADE);
