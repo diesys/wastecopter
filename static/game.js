@@ -20,6 +20,10 @@ function preload() {
     game.load.image('bar', 'assets/bar.jpg');
     game.load.image('wave', 'assets/wave.png');
     game.load.image('fog', 'assets/wave-1.png');
+
+    game.load.image('corona', 'assets/blue.png');
+
+    game.load.image('arrow', 'assets/arrow.png');
 }
 
 var sprite;
@@ -75,6 +79,8 @@ function create() {
     bullets.createMultiple(40, 'bullet');
     bullets.setAll('anchor.x', 0.5);
     bullets.setAll('anchor.y', 0.5);
+
+    arrow = game.add.sprite(x, y, 'arrow');
 
     // Populate board
     var boat = game.add.sprite(500, 100, 'boat');
@@ -159,6 +165,8 @@ function create() {
     sprite.body.maxVelocity.set(150);
     sprite.body.maxAngular = 300;
 
+    sprite.body.collideWorldBounds = true;
+
     //  Game input
     cursors = game.input.keyboard.createCursorKeys();
     game.input.keyboard.addKeyCapture([Phaser.Keyboard.SPACEBAR]);
@@ -178,6 +186,21 @@ function create() {
     sprite.scoretxt = scoretxt;
 
     game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.add(on_spacebar_pressed, this)
+
+    // particle effects
+
+    emitter = game.add.emitter(0, game.canvas.height/2, 200);
+    emitter.makeParticles('corona');
+
+    emitter.setXSpeed(2000)
+    
+    emitter.setAlpha(0.3, 0.8);
+    emitter.setScale(0.1, .2, .1, .2, 0);
+    emitter.gravity = 0;
+
+    //	false means don't explode all the sprites at once, but instead release at a rate of one particle per 100ms
+    //	The 5000 value is the lifespan of each particle before it's killed
+    emitter.start(false, 5000, 500);
 }
 
 
@@ -259,7 +282,8 @@ function update() {
         }
     }
 
-    screenWrap(sprite);
+    // screenWrap(sprite);
+    show_sprite_position(sprite)
 
     // bullets.forEachExists(screenWrap, this);
 
@@ -297,6 +321,57 @@ function fireBullet() {
     }
 
 }
+
+
+function show_sprite_position(sprite) {
+
+    arrow.anchor.set(.5, .5)
+    
+    arrow.visible = true
+    
+    if (sprite.x < 0) {
+	arrow.angle = 0
+	arrow.scale.x = -1
+
+	arrow.anchor.set(1, .5)
+	arrow.x = 0
+	arrow.y = game.height/2	
+
+    } else if (sprite.x > game.width) {
+	arrow.angle = 0
+	arrow.scale.x = 1
+	
+	arrow.anchor.set(1, .5)
+	arrow.x = game.width
+	arrow.y = game.height/2
+	
+    } else if (sprite.y < 0) {
+	arrow.angle = -90
+	
+	// arrow.anchor.set(1, .5)
+	arrow.anchor.set(0, 1)
+	arrow.x = game.width/2
+	arrow.y = 0
+
+    } else if (sprite.y > game.height) {
+	arrow.angle = 90
+	
+	// arrow.anchor.set(1, .5)
+	arrow.anchor.set(.5, 0)
+	arrow.x = game.width/2
+	arrow.y = game.height
+
+    } else {
+	arrow.visible = false
+    }
+
+    arrow.bringToTop()
+    
+    // if ((sprite.x < 0) || (sprite.x > game.width) || (sprite.y < 0) || (sprite.y > game.height)) {
+	
+    // }
+}
+
 
 function screenWrap(sprite) {
 
