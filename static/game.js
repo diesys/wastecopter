@@ -165,7 +165,7 @@ function update() {
 	d = Math.sqrt((sprite.x - garbs[g].x)**2+(sprite.y - garbs[g].y)**2)
 
 	if (sprite.status == "IDLE" && (d < PICK_RADIOUS)) {
-	    sprite.garb = garb
+	    sprite.garb = garbs[g]
 	    sprite.status = "PICK"
 	}
     }
