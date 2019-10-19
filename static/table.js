@@ -1,4 +1,5 @@
 function createTable(){
+	// console.log('cacca');
 	
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
@@ -19,8 +20,8 @@ function create(data) {
 	
 	
 	var body = document.getElementsByTagName('body')[0];
-	//var tbl = document.querySelector('table');
-	var tbl = document.createElement('table');
+	var tbl = document.querySelector('#table');
+	// var tbl = document.createElement('table');
 	tbl.style.width = '100%';
 	tbl.setAttribute('border', '1');
 	var tbdy = document.createElement('tbody');
@@ -45,7 +46,7 @@ function create(data) {
 				else
 				{
 					var img = document.createElement('img');
-    				img.src = './img/objects/'+allData[i-1].id+'.jpg';
+    				img.src = './img/objects/'+allData[i-1].id+'.png';
 					td.appendChild(img);
 				}
 				//i == 1 && j == 1 ? td.setAttribute('rowSpan', '2') : null;
@@ -55,7 +56,7 @@ function create(data) {
 		tbdy.appendChild(tr);
 	}
 	tbl.appendChild(tbdy);
-	body.appendChild(tbl);
+	// body.appendChild(tbl);
 }
 
-//crateTable();
+createTable();
