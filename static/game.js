@@ -1,6 +1,6 @@
 const ANG_ACC=50;
 
-var game = new Phaser.Game(1300, 500, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
+var game = new Phaser.Game(1300, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
 
 function preload() {
 
@@ -52,8 +52,8 @@ function create() {
     bullets.setAll('anchor.y', 0.5);
 
     // Populate board
-    var boat = game.add.sprite(600, 300, 'boat');
-    boat.anchor.set(.5, .5)
+    var boat = game.add.sprite(500, 100, 'boat');
+    // boat.anchor.set(.5, .5)
 
     var bin_names = ["A", "B", "C", "D", "E"];
     
@@ -75,14 +75,23 @@ function create() {
     garbs = []
     
     for (i = 0; i < 10; i++) {
-	var min_x = 50;
-	var max_x = 600;
+	const PADDING = 30;
+	var min_x = PADDING;
+	var max_x = game.canvas.width - PADDING;
 	
-	var min_y = 50;
-	var max_y = 500;
+	var min_y = PADDING;
+	var max_y = game.canvas.height - PADDING;
 	
-	x = (max_x - min_x)*Math.random() + min_x
-	y = (max_y - min_y)*Math.random() + min_y
+	var is_on_platform = (x, y, boat) => (x >= (boat.x + PADDING)) && (x <= (boat.x + boat.width + PADDING)) && (y >= (boat.y + PADDING)) && (y <= (boat.y + boat.height + PADDING))
+	do {
+	    x = (max_x - min_x)*Math.random() + min_x
+	    y = (max_y - min_y)*Math.random() + min_y
+	} while (is_on_platform(x, y, boat))
+	
+    
+    
+	// console.log( x, boat.x, (boat.x + boat.width) )
+	// console.log( x >= boat.x )
 	
 	foo = game.add.sprite(x, y, 'garb');
 	foo.anchor.set(.5, .5)
