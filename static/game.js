@@ -1,5 +1,5 @@
 const ANG_ACC = 150;
-const N_OBJECTS = 2;
+const N_OBJECTS = 29;
 
 const MATERIALS = ["paper", "plastic", "metal", "glass", "other"]
       
@@ -10,14 +10,16 @@ function preload() {
     // game.load.image('space', 'assets/ship.png');
     game.load.image('bullet', 'assets/bullet11.png');
     // game.load.image('ship', 'assets/ship.png');
-    game.load.image('garb', 'assets/garb.png');
-    // game.load.spritesheet('garb', 'assets/objects.png', 40, 40, N_OBJECTS);
+    // game.load.image('garb', 'assets/garb.png');
+    game.load.spritesheet('garb', 'img/objects/montage.png', 130, 130, N_OBJECTS);
     game.load.image('ship', 'assets/quadcopter.png');
     // game.load.image('boat', 'assets/boat.png');
     game.load.image('boat', 'assets/platform.png');
     
     game.load.image('bin', 'assets/bin.png');
     game.load.image('bar', 'assets/bar.jpg');
+    game.load.image('wave', 'assets/wave.png');
+    game.load.image('fog', 'assets/wave-1.png');
 }
 
 var sprite;
@@ -31,7 +33,7 @@ var bulletTime = 0;
 var garb;
 var bins = [];
 
-var garbage_density = 20;
+var garbage_density = 80;
 
 function create() {
 
@@ -43,6 +45,8 @@ function create() {
 
     // floor = new Phaser.Rectangle(0, 550, 800, 50);
     tileSprite = game.add.tileSprite(0, 0, game.canvas.width, 50, 'bar');
+
+    game.add.tileSprite(0, 50, game.canvas.width, game.canvas.height, 'wave');
 
 
     // Change healthbar here
@@ -135,9 +139,6 @@ function create() {
         }, 1000, Phaser.Easing.Linear.None, true)
     }
 
-
-    garb = garbs[0]
-
     //  Our player ship
     sprite = game.add.sprite(300, 300, 'ship');
     sprite.anchor.set(0.5);
@@ -149,7 +150,7 @@ function create() {
     // game.physics.enable(garb, Phaser.Physics.ARCADE);
     // garb.body.immovable=true
 
-    game.physics.enable([sprite, garb], Phaser.Physics.ARCADE);
+    game.physics.enable([sprite], Phaser.Physics.ARCADE);
 
     // garb.body.immovable=true
     // garb.body.moves=false
@@ -178,6 +179,7 @@ function create() {
 
     game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.add(on_spacebar_pressed, this)
 }
+
 
 function on_spacebar_pressed()
 {
