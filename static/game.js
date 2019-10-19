@@ -1,4 +1,4 @@
-const ANG_ACC = 50;
+const ANG_ACC = 150;
 
 var game = new Phaser.Game(1300, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
 
@@ -146,7 +146,8 @@ function create() {
     // garb.body.moves=false
 
     sprite.body.drag.set(100);
-    sprite.body.maxVelocity.set(200);
+    sprite.body.maxVelocity.set(150);
+    sprite.body.maxAngular = 300;
 
     //  Game input
     cursors = game.input.keyboard.createCursorKeys();
@@ -155,7 +156,7 @@ function create() {
     sprite.body.angularDrag = 100
 
     sprite.body.setCircle(50, 0, 0)
-
+    
 
     sprite.status = "IDLE"
     sprite.garb = null
