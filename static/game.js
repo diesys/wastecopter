@@ -1,4 +1,4 @@
-var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
+var game = new Phaser.Game(1300, 500, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
 
 function preload() {
 
@@ -7,6 +7,7 @@ function preload() {
     // game.load.image('ship', 'assets/ship.png');
     game.load.image('garb', 'assets/garb.png');
     game.load.image('ship', 'assets/quadcopter.png');
+    game.load.image('boat', 'assets/boat.png');
 
 }
 
@@ -109,7 +110,10 @@ function create() {
 
     sprite.status = "IDLE"
     sprite.garb = null
-    
+
+    game.add.sprite(600, 300, 'boat');
+
+    bins = []
 }
 
 function update() {
