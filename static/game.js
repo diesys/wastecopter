@@ -35,6 +35,12 @@ function create() {
 
     game.stage.backgroundColor = '#1366a9';
 
+    // Change healthbar here
+    var healthbar = new HealthBar(this, {x: 100, y: 50, width: 150, height: 25,
+					 bg: {color: "#00ff00"},
+					 bar: {color: "#ff0000"}
+					});
+
     //  We need arcade physics
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -55,7 +61,7 @@ function create() {
     var boat = game.add.sprite(500, 100, 'boat');
     // boat.anchor.set(.5, .5)
 
-    var binDict = {"A": [527, 143], "B": [623,184], "C": [635,282], "D": [621,377], "E": [526,416]};
+    var binDict = {"paper": [527, 143], "plastic": [623,184], "metal": [635,282], "glass": [621,377], "other": [526,416]};
     // var bin_coord = [(482,94),(577,0),(591,237),(577,333),(484,372)];
 
     for (var key in binDict) {
@@ -64,7 +70,7 @@ function create() {
             var x = binDict[key][0] + 13
             var y = binDict[key][1] + 7
             var bin = game.add.sprite(x, y, 'bin');
-
+	    bin.type = key;
             bins.push(bin)
         }
     }
@@ -95,6 +101,7 @@ function create() {
 	foo.anchor.set(.5, .5)
 
 	foo.scale.set(.5, .5)
+	foo.type = 'metal'
 	
 	garbs.push(foo)
     
@@ -137,18 +144,62 @@ function create() {
     //  Game input
     cursors = game.input.keyboard.createCursorKeys();
     game.input.keyboard.addKeyCapture([Phaser.Keyboard.SPACEBAR]);
+    
 
     sprite.body.angularDrag = 100
 
     sprite.body.setCircle(50, 0, 0)
     
-
+    sprite.health = 100
+    
     sprite.status = "IDLE"
     sprite.garb = null
+
+    sprite.healthbar = healthbar;
+
+    game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.add(on_spacebar_pressed, this)
+}
+
+function on_spacebar_pressed()
+{
+    if (!sprite.garb)
+	return;
+    
+    const PLACE_RADIOUS = 40;
+    
+    for (var b in bins) {
+        var bin = bins[b]
+
+	if (distance(bin, sprite.garb) >= PLACE_RADIOUS)
+	    continue;
+        
+	if (sprite.garb.type == bin.type) {
+	    valid_bin(sprite, bin)
+	} else {
+	    invalid_bin(sprite, bin)
+	}
+
+	sprite.garb.destroy();
+    }
+
+    if (sprite.status == "PICK")
+        sprite.status = "LEAVING"
 }
 
 function distance(sprite1, sprite2) {
     return Math.sqrt((sprite1.x - sprite2.x) ** 2 + (sprite1.y - sprite2.y) ** 2)
+}
+
+function valid_bin(sprite, bin) {
+    console.log('ok')
+}
+
+function invalid_bin(sprite, bin) {
+    sprite.health -= 10
+    sprite.healthbar.setPercent(sprite.health)
+
+    if (sprite.health < 0)
+	console.log('game over')
 }
 
 function update() {
@@ -175,24 +226,6 @@ function update() {
     const LEAVE_RADIOUS = 50
     const PICK_RADIOUS = 30
 
-    if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
-
-        if (sprite.garb) {
-            for (var b in bins) {
-                var bin = bins[b]
-
-                const PLACE_RADIOUS = 40;
-
-                if (distance(bin, sprite.garb) < PLACE_RADIOUS) { // drone is on bin
-                    sprite.garb.destroy();
-                }
-            }
-        }
-
-        if (sprite.status == "PICK")
-            sprite.status = "LEAVING"
-    }
-
     if (sprite.status == "LEAVING") {
         d = Math.sqrt((sprite.x - sprite.garb.x) ** 2 + (sprite.y - sprite.garb.y) ** 2)
 
@@ -209,9 +242,12 @@ function update() {
     for (var g in garbs) {
         d = Math.sqrt((sprite.x - garbs[g].x) ** 2 + (sprite.y - garbs[g].y) ** 2)
 
+	// pick garbage
         if (sprite.status == "IDLE" && (d < PICK_RADIOUS)) {
             sprite.garb = garbs[g]
             sprite.status = "PICK"
+
+	    console.log(sprite.garb.type)
         }
     }
 
