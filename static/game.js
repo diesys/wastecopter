@@ -1,3 +1,5 @@
+const ANG_ACC=50;
+
 var game = new Phaser.Game(1300, 500, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
 
 function preload() {
@@ -10,6 +12,8 @@ function preload() {
     // game.load.image('boat', 'assets/boat.png');
     game.load.image('boat', 'assets/platform.png');
 
+    game.load.image('bin', 'assets/bin.png');
+
 }
 
 var sprite;
@@ -21,6 +25,7 @@ var bulletTime = 0;
 
 
 var garb;
+var bins = [];
 
 function create() {
 
@@ -46,7 +51,25 @@ function create() {
     bullets.setAll('anchor.x', 0.5);
     bullets.setAll('anchor.y', 0.5);
 
+    // Populate board
+    var boat = game.add.sprite(600, 300, 'boat');
+    boat.anchor.set(.5, .5)
 
+    var bin_names = ["A", "B", "C", "D", "E"];
+    
+    for (s in bin_names) {
+	var str = bin_names[s]
+
+	const R = 80
+
+	var angle = s/(bin_names.length)*2*3.14
+	var x = R *Math.cos(angle) + boat.x
+	var y = R * Math.sin(angle) + boat.y
+
+	var bin = game.add.sprite(x, y, 'bin');
+
+	bins.push(bin)
+    }
 
 
     garbs = []
@@ -111,10 +134,10 @@ function create() {
 
     sprite.status = "IDLE"
     sprite.garb = null
+}
 
-    game.add.sprite(600, 300, 'boat');
-
-    bins = []
+function distance(sprite1, sprite2) {
+    return Math.sqrt((sprite1.x - sprite2.x)**2+(sprite1.y - sprite2.y)**2)
 }
 
 function update() {
@@ -133,11 +156,11 @@ function update() {
 
     if (cursors.left.isDown)
     {
-        sprite.body.angularAcceleration = -200;
+        sprite.body.angularAcceleration = -ANG_ACC;
     }
     else if (cursors.right.isDown)
     {
-        sprite.body.angularAcceleration = 200;
+        sprite.body.angularAcceleration = ANG_ACC;
     }
     else
     {
@@ -149,6 +172,19 @@ function update() {
     
     if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR))
     {
+	
+	if (sprite.garb) {
+	    for (var b in bins) {
+		var bin = bins[b]
+		
+		const PLACE_RADIOUS = 40;
+
+		if (distance(bin, sprite.garb) < PLACE_RADIOUS) { // drone is on bin
+		    sprite.garb.destroy();
+		}
+	    }
+	}
+	
 	if (sprite.status == "PICK")
 	    sprite.status = "LEAVING"
     }
