@@ -1,6 +1,11 @@
-const ANG_ACC=50;
+const ANG_ACC = 50;
 
-var game = new Phaser.Game(1300, 500, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
+var game = new Phaser.Game(1300, 500, Phaser.CANVAS, 'phaser-example', {
+    preload: preload,
+    create: create,
+    update: update,
+    render: render
+});
 
 function preload() {
 
@@ -55,55 +60,71 @@ function create() {
     var boat = game.add.sprite(600, 300, 'boat');
     boat.anchor.set(.5, .5)
 
-    var bin_names = ["A", "B", "C", "D", "E"];
-    
-    for (s in bin_names) {
-	var str = bin_names[s]
+    var binDict = {"A": [527, 143], "B": [623,184], "C": [635,282], "D": [621,377], "E": [526,416]};
+    // var bin_coord = [(482,94),(577,0),(591,237),(577,333),(484,372)];
 
-	const R = 80
+    for (var key in binDict) {
+        if (binDict.hasOwnProperty(key)) {
+            // console.log(key, binDict[key][0], binDict[key][1]);
+            var x = binDict[key][0]
+            var y = binDict[key][1]
+            var bin = game.add.sprite(x, y, 'bin');
 
-	var angle = s/(bin_names.length)*2*3.14
-	var x = R *Math.cos(angle) + boat.x
-	var y = R * Math.sin(angle) + boat.y
-
-	var bin = game.add.sprite(x, y, 'bin');
-
-	bins.push(bin)
+            bins.push(bin)
+        }
     }
+    // for (s in bin_names) {
+        // var str = bin_names[s]
+
+        // const R = 80
+
+        // var angle = s / (bin_names.length) * 2 * 3.14
+        // var x = R * Math.cos(angle) + boat.x
+        // var y = R * Math.sin(angle) + boat.y
+        
+        // var x =  bin_names[s]
+        // var y =  
+        // var bin = game.add.sprite(x, y, 'bin');
+        
+        // bins.push(bin)
+    // }
 
 
     garbs = []
-    
+
     for (i = 0; i < 10; i++) {
-	var min_x = 50;
-	var max_x = 600;
-	
-	var min_y = 50;
-	var max_y = 500;
-	
-	x = (max_x - min_x)*Math.random() + min_x
-	y = (max_y - min_y)*Math.random() + min_y
-	
-	foo = game.add.sprite(x, y, 'garb');
-	foo.anchor.set(.5, .5)
+        var min_x = 50;
+        var max_x = 600;
 
-	foo.scale.set(.5, .5)
-	
-	garbs.push(foo)
-    
-	// game.add.sprite(100, 200, 'ship');
-	// game.add.sprite(200, 150, 'ship');
+        var min_y = 50;
+        var max_y = 500;
 
-	// game.add.tween(foo.scale).from({x: 0, y: 0}, 1000, Phaser.Easing.Linear.None, true)
+        x = (max_x - min_x) * Math.random() + min_x
+        y = (max_y - min_y) * Math.random() + min_y
+
+        foo = game.add.sprite(x, y, 'garb');
+        foo.anchor.set(.5, .5)
+
+        foo.scale.set(.5, .5)
+
+        garbs.push(foo)
+
+        // game.add.sprite(100, 200, 'ship');
+        // game.add.sprite(200, 150, 'ship');
+
+        // game.add.tween(foo.scale).from({x: 0, y: 0}, 1000, Phaser.Easing.Linear.None, true)
     }
 
     for (g in garbs) {
-	game.add.tween(garbs[g].scale).from({x: 0, y: 0}, 1000, Phaser.Easing.Linear.None, true)
+        game.add.tween(garbs[g].scale).from({
+            x: 0,
+            y: 0
+        }, 1000, Phaser.Easing.Linear.None, true)
     }
 
 
     garb = garbs[0]
-    
+
     //  Our player ship
     sprite = game.add.sprite(300, 300, 'ship');
     sprite.anchor.set(0.5);
@@ -125,107 +146,98 @@ function create() {
 
     //  Game input
     cursors = game.input.keyboard.createCursorKeys();
-    game.input.keyboard.addKeyCapture([ Phaser.Keyboard.SPACEBAR ]);
+    game.input.keyboard.addKeyCapture([Phaser.Keyboard.SPACEBAR]);
 
     sprite.body.angularDrag = 100
 
-    sprite.body.setCircle(50, 0, 0) 
-  
+    sprite.body.setCircle(50, 0, 0)
+
 
     sprite.status = "IDLE"
     sprite.garb = null
 }
 
 function distance(sprite1, sprite2) {
-    return Math.sqrt((sprite1.x - sprite2.x)**2+(sprite1.y - sprite2.y)**2)
+    return Math.sqrt((sprite1.x - sprite2.x) ** 2 + (sprite1.y - sprite2.y) ** 2)
 }
 
 function update() {
 
     // game.physics.arcade.collide(sprite, garb, function() { console.log('hit')}, null, this);
 
-    
-    if (cursors.up.isDown)
-    {
+
+    if (cursors.up.isDown) {
         game.physics.arcade.accelerationFromRotation(sprite.rotation, 200, sprite.body.acceleration);
     } else if (cursors.down.isDown) {
-	game.physics.arcade.accelerationFromRotation(sprite.rotation, -200, sprite.body.acceleration);
+        game.physics.arcade.accelerationFromRotation(sprite.rotation, -200, sprite.body.acceleration);
     } else {
         sprite.body.acceleration.set(0);
     }
 
-    if (cursors.left.isDown)
-    {
+    if (cursors.left.isDown) {
         sprite.body.angularAcceleration = -ANG_ACC;
-    }
-    else if (cursors.right.isDown)
-    {
+    } else if (cursors.right.isDown) {
         sprite.body.angularAcceleration = ANG_ACC;
-    }
-    else
-    {
+    } else {
         sprite.body.angularAcceleration = 0;
     }
 
-    const LEAVE_RADIOUS=50
-    const PICK_RADIOUS=30
-    
-    if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR))
-    {
-	
-	if (sprite.garb) {
-	    for (var b in bins) {
-		var bin = bins[b]
-		
-		const PLACE_RADIOUS = 40;
+    const LEAVE_RADIOUS = 50
+    const PICK_RADIOUS = 30
 
-		if (distance(bin, sprite.garb) < PLACE_RADIOUS) { // drone is on bin
-		    sprite.garb.destroy();
-		}
-	    }
-	}
-	
-	if (sprite.status == "PICK")
-	    sprite.status = "LEAVING"
+    if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
+
+        if (sprite.garb) {
+            for (var b in bins) {
+                var bin = bins[b]
+
+                const PLACE_RADIOUS = 40;
+
+                if (distance(bin, sprite.garb) < PLACE_RADIOUS) { // drone is on bin
+                    sprite.garb.destroy();
+                }
+            }
+        }
+
+        if (sprite.status == "PICK")
+            sprite.status = "LEAVING"
     }
 
     if (sprite.status == "LEAVING") {
-	d = Math.sqrt((sprite.x - sprite.garb.x)**2+(sprite.y - sprite.garb.y)**2)
+        d = Math.sqrt((sprite.x - sprite.garb.x) ** 2 + (sprite.y - sprite.garb.y) ** 2)
 
-	if (d > LEAVE_RADIOUS) {
-	    sprite.status = "IDLE"
-	    sprite.garb = null
-	}
+        if (d > LEAVE_RADIOUS) {
+            sprite.status = "IDLE"
+            sprite.garb = null
+        }
     }
-    
+
     screenWrap(sprite);
 
     // bullets.forEachExists(screenWrap, this);
 
     for (var g in garbs) {
-	d = Math.sqrt((sprite.x - garbs[g].x)**2+(sprite.y - garbs[g].y)**2)
+        d = Math.sqrt((sprite.x - garbs[g].x) ** 2 + (sprite.y - garbs[g].y) ** 2)
 
-	if (sprite.status == "IDLE" && (d < PICK_RADIOUS)) {
-	    sprite.garb = garbs[g]
-	    sprite.status = "PICK"
-	}
+        if (sprite.status == "IDLE" && (d < PICK_RADIOUS)) {
+            sprite.garb = garbs[g]
+            sprite.status = "PICK"
+        }
     }
 
     if (sprite.status == "PICK" && sprite.garb) {
-	sprite.garb.x = sprite.x
-	sprite.garb.y = sprite.y
+        sprite.garb.x = sprite.x
+        sprite.garb.y = sprite.y
     }
 }
 
 
-function fireBullet () {
+function fireBullet() {
 
-    if (game.time.now > bulletTime)
-    {
+    if (game.time.now > bulletTime) {
         bullet = bullets.getFirstExists(false);
 
-        if (bullet)
-        {
+        if (bullet) {
             bullet.reset(sprite.body.x + 16, sprite.body.y + 16);
             bullet.lifespan = 2000;
             bullet.rotation = sprite.rotation;
@@ -236,23 +248,17 @@ function fireBullet () {
 
 }
 
-function screenWrap (sprite) {
+function screenWrap(sprite) {
 
-    if (sprite.x < 0)
-    {
+    if (sprite.x < 0) {
         sprite.x = game.width;
-    }
-    else if (sprite.x > game.width)
-    {
+    } else if (sprite.x > game.width) {
         sprite.x = 0;
     }
 
-    if (sprite.y < 0)
-    {
+    if (sprite.y < 0) {
         sprite.y = game.height;
-    }
-    else if (sprite.y > game.height)
-    {
+    } else if (sprite.y > game.height) {
         sprite.y = 0;
     }
 
