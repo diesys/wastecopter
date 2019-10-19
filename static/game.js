@@ -68,21 +68,6 @@ function create() {
             bins.push(bin)
         }
     }
-    // for (s in bin_names) {
-        // var str = bin_names[s]
-
-        // const R = 80
-
-        // var angle = s / (bin_names.length) * 2 * 3.14
-        // var x = R * Math.cos(angle) + boat.x
-        // var y = R * Math.sin(angle) + boat.y
-        
-        // var x =  bin_names[s]
-        // var y =  
-        // var bin = game.add.sprite(x, y, 'bin');
-        
-        // bins.push(bin)
-    // }
 
 
     garbs = []
@@ -95,7 +80,7 @@ function create() {
 	var min_y = PADDING;
 	var max_y = game.canvas.height - PADDING;
 	
-	var is_on_platform = (x, y, boat) => (x >= (boat.x + PADDING)) && (x <= (boat.x + boat.width + PADDING)) && (y >= (boat.y + PADDING)) && (y <= (boat.y + boat.height + PADDING))
+	var is_on_platform = (x, y, boat) => (x >= (boat.x - PADDING)) && (x <= (boat.x + boat.width + PADDING)) && (y >= (boat.y - PADDING)) && (y <= (boat.y + boat.height + PADDING))
 	do {
 	    x = (max_x - min_x)*Math.random() + min_x
 	    y = (max_y - min_y)*Math.random() + min_y
