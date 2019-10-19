@@ -1,6 +1,6 @@
 const ANG_ACC = 150;
 
-var game = new Phaser.Game(1300, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
+var game = new Phaser.Game(1300, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update });
 
 function preload() {
 
@@ -14,6 +14,8 @@ function preload() {
 
     game.load.image('bin', 'assets/bin.png');
 
+
+    game.load.image('starfield', 'assets/starfield.jpg');
 }
 
 var sprite;
@@ -35,11 +37,19 @@ function create() {
 
     game.stage.backgroundColor = '#1366a9';
 
+    // floor = new Phaser.Rectangle(0, 550, 800, 50);
+    tileSprite = game.add.tileSprite(0, 0, game.canvas.width, 50, 'bar');
+
+
     // Change healthbar here
-    var healthbar = new HealthBar(this, {x: 100, y: 50, width: 150, height: 25,
+    var healthbar = new HealthBar(this, {x: 160, y: 20, width: 150, height: 25,
 					 bg: {color: "#00ff00"},
 					 bar: {color: "#ff0000"}
 					});
+    
+    game.add.text(250, 10, "Score:", { font: "20px Arial", fill: "#000000", align: "center" });
+    game.add.text(10, 10, "Health:", { font: "20px Arial", fill: "#000000", align: "center" });
+
 
     //  We need arcade physics
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -70,6 +80,8 @@ function create() {
             var x = binDict[key][0] + 13
             var y = binDict[key][1] + 7
             var bin = game.add.sprite(x, y, 'bin');
+	    bin.alpha = 0;
+	    
 	    bin.type = key;
             bins.push(bin)
         }
