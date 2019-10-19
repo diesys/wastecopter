@@ -6,6 +6,7 @@ function preload() {
     // game.load.image('space', 'assets/ship.png');
     game.load.image('bullet', 'assets/bullet11.png');
     game.load.image('ship', 'assets/ship.png');
+    game.load.image('garb', 'assets/garb.png');
 
 }
 
@@ -20,7 +21,7 @@ function create() {
 
     //  This will run in Canvas mode, so let's gain a little speed and display
     // game.renderer.clearBeforeRender = false;
-    // game.renderer.roundPixels = true;
+    game.renderer.roundPixels = true;
 
     //  We need arcade physics
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -38,6 +39,36 @@ function create() {
     bullets.setAll('anchor.x', 0.5);
     bullets.setAll('anchor.y', 0.5);
 
+        garbs = []
+    
+    for (i = 0; i < 10; i++) {
+	var min_x = 50;
+	var max_x = 600;
+	
+	var min_y = 50;
+	var max_y = 500;
+	
+	x = (max_x - min_x)*Math.random() + min_x
+	y = (max_y - min_y)*Math.random() + min_y
+	
+	foo = game.add.sprite(x, y, 'garb');
+	foo.anchor.set(.5, .5)
+
+	foo.scale.set(.5, .5)
+	
+	garbs.push(foo)
+    
+	// game.add.sprite(100, 200, 'ship');
+	// game.add.sprite(200, 150, 'ship');
+
+	// game.add.tween(foo.scale).from({x: 0, y: 0}, 1000, Phaser.Easing.Linear.None, true)
+    }
+
+    for (g in garbs) {
+	game.add.tween(garbs[g].scale).from({x: 0, y: 0}, 1000, Phaser.Easing.Linear.None, true)
+    }
+
+
     //  Our player ship
     sprite = game.add.sprite(300, 300, 'ship');
     sprite.anchor.set(0.5);
@@ -53,6 +84,10 @@ function create() {
     game.input.keyboard.addKeyCapture([ Phaser.Keyboard.SPACEBAR ]);
 
     sprite.body.angularDrag = 100
+
+    
+
+
 }
 
 function update() {
