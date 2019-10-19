@@ -1,5 +1,8 @@
 const ANG_ACC = 150;
+const N_OBJECTS = 2;
 
+const MATERIALS = ["paper", "plastic", "metal", "glass", "other"]
+      
 var game = new Phaser.Game(1300, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update });
 
 function preload() {
@@ -8,14 +11,13 @@ function preload() {
     game.load.image('bullet', 'assets/bullet11.png');
     // game.load.image('ship', 'assets/ship.png');
     game.load.image('garb', 'assets/garb.png');
+    // game.load.spritesheet('garb', 'assets/objects.png', 40, 40, N_OBJECTS);
     game.load.image('ship', 'assets/quadcopter.png');
     // game.load.image('boat', 'assets/boat.png');
     game.load.image('boat', 'assets/platform.png');
-
+    
     game.load.image('bin', 'assets/bin.png');
-
-
-    game.load.image('starfield', 'assets/starfield.jpg');
+    game.load.image('bar', 'assets/bar.jpg');
 }
 
 var sprite;
@@ -28,6 +30,8 @@ var bulletTime = 0;
 
 var garb;
 var bins = [];
+
+var garbage_density = 20;
 
 function create() {
 
@@ -42,15 +46,16 @@ function create() {
 
 
     // Change healthbar here
-    var healthbar = new HealthBar(this, {x: 160, y: 20, width: 150, height: 25,
+    var healthbar = new HealthBar(this, {x: 160, y: 25, width: 150, height: 25,
 					 bg: {color: "#00ff00"},
 					 bar: {color: "#ff0000"}
 					});
     
-    game.add.text(250, 10, "Score:", { font: "20px Arial", fill: "#000000", align: "center" });
-    game.add.text(10, 10, "Health:", { font: "20px Arial", fill: "#000000", align: "center" });
+    var scoretxt = game.add.text(300, 15, "Score:", { font: "20px Arial", fill: "#000000", align: "center" });
+    game.add.text(10, 15, "Health:", { font: "20px Arial", fill: "#000000", align: "center" });
 
-
+    scoretxt.text = "Score: 0"
+    
     //  We need arcade physics
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -89,13 +94,13 @@ function create() {
 
 
     garbs = []
-
-    for (i = 0; i < 10; i++) {
+    
+    for (i = 0; i < garbage_density; i++) {
 	const PADDING = 30;
 	var min_x = PADDING;
 	var max_x = game.canvas.width - PADDING;
 	
-	var min_y = PADDING;
+	var min_y = PADDING + 60;
 	var max_y = game.canvas.height - PADDING;
 	
 	var is_on_platform = (x, y, boat) => (x >= (boat.x - PADDING)) && (x <= (boat.x + boat.width + PADDING)) && (y >= (boat.y - PADDING)) && (y <= (boat.y + boat.height + PADDING))
@@ -109,11 +114,11 @@ function create() {
 	// console.log( x, boat.x, (boat.x + boat.width) )
 	// console.log( x >= boat.x )
 	
-	foo = game.add.sprite(x, y, 'garb');
+	foo = game.add.sprite(x, y, 'garb', parseInt(N_OBJECTS*Math.random()));
 	foo.anchor.set(.5, .5)
 
 	foo.scale.set(.5, .5)
-	foo.type = 'metal'
+	foo.type = 'metal'// MATERIALS[] // metal
 	
 	garbs.push(foo)
     
@@ -163,11 +168,13 @@ function create() {
     sprite.body.setCircle(50, 0, 0)
     
     sprite.health = 100
+    sprite.score = 0
     
     sprite.status = "IDLE"
     sprite.garb = null
 
     sprite.healthbar = healthbar;
+    sprite.scoretxt = scoretxt;
 
     game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.add(on_spacebar_pressed, this)
 }
@@ -203,7 +210,10 @@ function distance(sprite1, sprite2) {
 }
 
 function valid_bin(sprite, bin) {
-    console.log('ok')
+    // console.log('ok')
+
+    sprite.score += 10
+    sprite.scoretxt.text = "Score: " + sprite.score
 }
 
 function invalid_bin(sprite, bin) {
