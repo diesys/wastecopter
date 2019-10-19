@@ -1,11 +1,6 @@
 const ANG_ACC = 50;
 
-var game = new Phaser.Game(1300, 500, Phaser.CANVAS, 'phaser-example', {
-    preload: preload,
-    create: create,
-    update: update,
-    render: render
-});
+var game = new Phaser.Game(1300, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
 
 function preload() {
 
@@ -57,8 +52,8 @@ function create() {
     bullets.setAll('anchor.y', 0.5);
 
     // Populate board
-    var boat = game.add.sprite(600, 300, 'boat');
-    boat.anchor.set(.5, .5)
+    var boat = game.add.sprite(500, 100, 'boat');
+    // boat.anchor.set(.5, .5)
 
     var binDict = {"A": [527, 143], "B": [623,184], "C": [635,282], "D": [621,377], "E": [526,416]};
     // var bin_coord = [(482,94),(577,0),(591,237),(577,333),(484,372)];
@@ -66,8 +61,8 @@ function create() {
     for (var key in binDict) {
         if (binDict.hasOwnProperty(key)) {
             // console.log(key, binDict[key][0], binDict[key][1]);
-            var x = binDict[key][0]
-            var y = binDict[key][1]
+            var x = binDict[key][0] + 13
+            var y = binDict[key][1] + 7
             var bin = game.add.sprite(x, y, 'bin');
 
             bins.push(bin)
@@ -93,26 +88,35 @@ function create() {
     garbs = []
 
     for (i = 0; i < 10; i++) {
-        var min_x = 50;
-        var max_x = 600;
+	const PADDING = 30;
+	var min_x = PADDING;
+	var max_x = game.canvas.width - PADDING;
+	
+	var min_y = PADDING;
+	var max_y = game.canvas.height - PADDING;
+	
+	var is_on_platform = (x, y, boat) => (x >= (boat.x + PADDING)) && (x <= (boat.x + boat.width + PADDING)) && (y >= (boat.y + PADDING)) && (y <= (boat.y + boat.height + PADDING))
+	do {
+	    x = (max_x - min_x)*Math.random() + min_x
+	    y = (max_y - min_y)*Math.random() + min_y
+	} while (is_on_platform(x, y, boat))
+	
+    
+    
+	// console.log( x, boat.x, (boat.x + boat.width) )
+	// console.log( x >= boat.x )
+	
+	foo = game.add.sprite(x, y, 'garb');
+	foo.anchor.set(.5, .5)
 
-        var min_y = 50;
-        var max_y = 500;
+	foo.scale.set(.5, .5)
+	
+	garbs.push(foo)
+    
+	// game.add.sprite(100, 200, 'ship');
+	// game.add.sprite(200, 150, 'ship');
 
-        x = (max_x - min_x) * Math.random() + min_x
-        y = (max_y - min_y) * Math.random() + min_y
-
-        foo = game.add.sprite(x, y, 'garb');
-        foo.anchor.set(.5, .5)
-
-        foo.scale.set(.5, .5)
-
-        garbs.push(foo)
-
-        // game.add.sprite(100, 200, 'ship');
-        // game.add.sprite(200, 150, 'ship');
-
-        // game.add.tween(foo.scale).from({x: 0, y: 0}, 1000, Phaser.Easing.Linear.None, true)
+	// game.add.tween(foo.scale).from({x: 0, y: 0}, 1000, Phaser.Easing.Linear.None, true)
     }
 
     for (g in garbs) {
