@@ -63,6 +63,8 @@ function preload() {
     game.load.image('fog', 'assets/wave-1.png');
 
     game.load.image('corona', 'assets/blue.png');
+
+    game.load.audio('bg_audio', 'assets/ethereal_ocean_feast.wav');
 }
 
 
@@ -244,6 +246,9 @@ function create() {
 	//	The 5000 value is the lifespan of each particle before it's killed
 	emitter.start(false, 5000, 500);
     }
+
+    // add audio
+    game.add.audio('bg_audio').loopFull();
 }
 
 
