@@ -78,7 +78,7 @@ function create(data) {
 		// element = document.querySelector(curr_selector)
 		// console.log(element.innerHTML, curr_selector, "ciao")
 
-	}
+	// }
 }
 
 createTable();

@@ -20,23 +20,49 @@
       html, body {
         font-family: Raleway, Helvetica, sans-serif;
       }
+
+      #topBar {
+        background: rgba(255,255,255,.9);
+      }
+
+      #projectIMG {
+        width: 100%;
+        height: 100%;
+        /* margin-bottom: 50px; */
+      }
+
+      #button-area {
+        font-size: 12pt;
+      }
+
+      .w3-container * {
+        transition: all .3s;
+      }
+
     </style>
 
   </head>
 
-  <body class="w3-light-grey">
+  <body class="w3-light">
 
     <!-- Top container -->
-    <div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
-      <!-- <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i
-          class="fa fa-bars"></i>  Menu</button> -->
-      <span class="w3-bar-item w3-left">WasteCopter</span>
+    <div class="w3-bar w3-top w3-large" id="topBar" style="z-index:4">
+      <div id="button-area" class="w3-container w3-card">
+        <a class="w3-button w3-bar-item" style="font-weight:900;" href="#">WasteCopter</a>
+        <a class="w3-button w3-bar-item" href="test.html?wind-intensity=0&amp;wind-direction=1&amp;garbage-density=10">Atlantic Ocean - Summer</a>
+        <a class="w3-button w3-bar-item" href="test.html?wind-intensity=0&amp;wind-direction=-1&amp;garbage-density=20">Indian Ocean - Summer</a>
+        <a class="w3-button w3-bar-item" href="test.html?wind-intensity=1&amp;wind-direction=1&amp;garbage-density=30">Pacific Ocean - Summer</a>
+        <a class="w3-button w3-bar-item" href="test.html?wind-intensity=3&amp;wind-direction=1&amp;garbage-density=10">Atlantic Ocean - Winter</a>
+        </div>
     </div>
 
     <!-- !PAGE CONTENT! -->
-    <div class="w3-main" style="margin-top:75px;">
+    <div class="w3-main">
 
       <center>
+
+        <img src="img/projectIMG.png" id="projectIMG" alt="WasteCopter image">
+
         <!-- GAME CANVAS -->
         <div id="phaser-example"></div>
       </center>
@@ -108,7 +134,7 @@
       <hr> -->
 
       <div class="w3-container">
-        <h5>Data table</h5>
+        <h5>User selection data</h5>
         <table id="table" class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white"></table>
         <br>
         <!-- <button class="w3-button w3-dark-grey">More Countries  <i class="fa fa-arrow-right"></i></button> -->
@@ -117,9 +143,11 @@
 
       <!-- Footer -->
       <footer class="w3-container w3-padding-16 w3-light-grey">
-        <h4>FOOTER</h4>
-        <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a>, <a href="https://phaser.io">Phaser</a> and <a href="https://fontawesome.com">FontAwesome</a></p>
-      </footer>
+        <center>
+          <h4><a href="https://2019.spaceappschallenge.org/challenges/earths-oceans/trash-cleanup/teams/lifo/members">LIFO Team</a> @ <a href="https://www.nasa.gov">NASA</a> SpaceApps Challenge 2019 - Pisa</h4>
+          <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a>, <a href="https://phaser.io">Phaser</a> and <a href="https://fontawesome.com">FontAwesome</a></p>
+        </center>
+        </footer>
 
     </div>
 
