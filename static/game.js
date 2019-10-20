@@ -4,7 +4,8 @@ const N_OBJECTS = 24;
 
 //                   0         1          2         3      4
 const MATERIALS = ["paper", "plastic", "metal", "glass", "other"]
-const WIND_EFFECT = 35
+// const WIND_EFFECT = 35
+const WIND_EFFECT = 0
 
 var wind = {'direction': 1, 'intensity': 3}
 var sprite;

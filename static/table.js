@@ -54,28 +54,31 @@ function create(data) {
 	// body.appendChild(tbl);
 
 	// UPDATE ICONS
-	// for (var i = 0; i <= numEle; i++) {
-	// 	labl = allData[i-1].label;
-	// 	if(labl == "paper") {
-	// 		curr_selector = '#count_paper';
-	// 	}
-	// 	else if(labl == "plastic") {
-	// 		curr_selector = '#count_plastic';
-	// 	}
-	// 	else if(labl == "glass") {
-	// 		curr_selector = '#count_glass';
-	// 	}
-	// 	else if(labl == "metal") {
-	// 		curr_selector = '#count_metal';
-	// 	}
-	// 	else if(labl == "other") {
-	// 		curr_selector = '#count_other';
-	// 	}
+	// var allData2 = JSON.parse(data);
+	// for (var j = 0; j <= numEle; j++) {
+	// 	labl = allData2[j].label;
+	// 	console.log(allData2[j]);
+		
+		// if(labl == "paper") {
+		// 	curr_selector = '#count_paper';
+		// }
+		// else if(labl == "plastic") {
+		// 	curr_selector = '#count_plastic';
+		// }
+		// else if(labl == "glass") {
+		// 	curr_selector = '#count_glass';
+		// }
+		// else if(labl == "metal") {
+		// 	curr_selector = '#count_metal';
+		// }
+		// else if(labl == "other") {
+		// 	curr_selector = '#count_other';
+		// }
 
-	// 	element = querySelector(curr_selector)
-	// 	console.log(element.innerHTML, curr_selector)
+		// element = document.querySelector(curr_selector)
+		// console.log(element.innerHTML, curr_selector, "ciao")
 
-	// }
+	}
 }
 
 createTable();
