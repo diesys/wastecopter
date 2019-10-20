@@ -1,6 +1,4 @@
 function createTable(){
-	// console.log('cacca');
-	
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 	  if (this.readyState == 4 && this.status == 200) {
@@ -15,10 +13,6 @@ function createTable(){
 }
 
 function create(data) {
-	//var data = '[{"name":"bottiglia","label":"plastica"},{"name":"lattina","label":"metallo"},{"name":"cellulare","label":"indifferenziata"},{"name":"foglio","label":"carta"}]';
-	//var data = '[{"name":"glass26.jpg","label":"plastica"}]';
-	
-	
 	var body = document.getElementsByTagName('body')[0];
 	var tbl = document.querySelector('#table');
 	// var tbl = document.createElement('table');
