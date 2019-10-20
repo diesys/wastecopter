@@ -2,7 +2,10 @@ const ANG_ACC = 150;
 const N_OBJECTS = 29;
 
 const MATERIALS = ["paper", "plastic", "metal", "glass", "other"]
-      
+const WIND_EFFECT = 15
+
+var wind = {'direction': -1, 'intensity': 1}
+
 var game = new Phaser.Game(1300, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update });
 
 function preload() {
@@ -37,7 +40,7 @@ var bulletTime = 0;
 var garb;
 var bins = [];
 
-var garbage_density = 80;
+var garbage_density = 20;
 
 function create() {
 
@@ -161,10 +164,12 @@ function create() {
     // garb.body.immovable=true
     // garb.body.moves=false
 
-    sprite.body.drag.set(100);
-    sprite.body.maxVelocity.set(150);
+    sprite.body.drag.set(10, 0);
+    sprite.body.maxVelocity.set(100);
     sprite.body.maxAngular = 300;
+    sprite.body.gravity.set(wind.direction*wind.intensity*WIND_EFFECT, 0) // wind effect
 
+    
     sprite.body.collideWorldBounds = true;
 
     //  Game input
@@ -189,14 +194,16 @@ function create() {
 
     // particle effects
 
-    emitter = game.add.emitter(0, game.canvas.height/2, 200);
+    if (wind.direction > 0)
+	emitter = game.add.emitter(0, game.canvas.height/2, 200);
+    else	
+	emitter = game.add.emitter(game.width, game.canvas.height/2, 200);
     emitter.makeParticles('corona');
-
-    emitter.setXSpeed(2000)
+    
+    emitter.setXSpeed(wind.direction*wind.intensity*2000)
     
     emitter.setAlpha(0.3, 0.8);
     emitter.setScale(0.1, .2, .1, .2, 0);
-    emitter.gravity = 0;
 
     //	false means don't explode all the sprites at once, but instead release at a rate of one particle per 100ms
     //	The 5000 value is the lifespan of each particle before it's killed
