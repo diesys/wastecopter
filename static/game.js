@@ -1,6 +1,6 @@
 const ANG_ACC = 150;
-// const N_OBJECTS = 29;
-const N_OBJECTS = 4;
+const N_OBJECTS = 24;
+// const N_OBJECTS = 4;
 
 //                   0         1          2         3      4
 const MATERIALS = ["paper", "plastic", "metal", "glass", "other"]

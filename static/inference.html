@@ -1,0 +1,42 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Wastecopter: Seriously, let's have fun</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">    
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  </head>
+
+  <body>
+
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+      <input id="files" type="file" name="photo">
+      <input type="submit" name="submit_image" value="Upload">
+    </form>
+    
+    <!-- <input id="files" type="file" accept="image/*">Insert your image here</input> -->
+
+    <img id="image">
+    <div id="label"></div>
+
+    <script>
+      document.getElementById("files").onchange = function () {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+      // get loaded data and render thumbnail.
+      document.getElementById("image").src = e.target.result;
+      };
+
+      // read the image file as a data URL.
+      reader.readAsDataURL(this.files[0]);
+      };
+    </script>
+
+    
+  </body>
+
+</html>
