@@ -46,7 +46,7 @@ function create(data) {
 				else
 				{
 					var img = document.createElement('img');
-    				img.src = './img/objects/'+allData[i-1].id+'.png';
+    				img.src = './img/objects/'+allData[i-1].id;
 					td.appendChild(img);
 				}
 				//i == 1 && j == 1 ? td.setAttribute('rowSpan', '2') : null;
