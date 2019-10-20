@@ -62,7 +62,8 @@ function preload() {
     game.load.image('boat', 'assets/platform.png');
     
     game.load.image('bin', 'assets/bin.png');
-    game.load.image('bar', 'assets/bar.jpg');
+    // game.load.image('bar', 'assets/bar.jpg');
+    game.load.image('bar', 'assets/bar_wood.png');
     game.load.image('wave', 'assets/wave.png');
     game.load.image('fog', 'assets/wave-1.png');
 
@@ -89,12 +90,12 @@ function create() {
 
     // Change healthbar here
     var healthbar = new HealthBar(this, {x: 160, y: 25, width: 150, height: 25,
-					 bg: {color: "#00ff00"},
-					 bar: {color: "#ff0000"}
+					 bg: {color: "#ff0000"},
+					 bar: {color: "#00ff00"}
 					});
     
-    var scoretxt = game.add.text(300, 15, "Score:", { font: "20px Arial", fill: "#000000", align: "center" });
-    game.add.text(10, 15, "Health:", { font: "20px Arial", fill: "#000000", align: "center" });
+    var scoretxt = game.add.text(300, 15, "Score:", { font: "20px Raleway", fill: "#ffffff", align: "center" });
+    game.add.text(10, 15, "Health:", { font: "20px Raleway", fill: "#ffffff", align: "center" });
 
     scoretxt.text = "Score: 0"
     
