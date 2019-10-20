@@ -228,7 +228,7 @@ function create() {
 
     // particle effects
 
-    console.log(wind.intensity)
+    console.log("wind intensity", wind.intensity)
 
     if (wind.intensity > 0) {
 	if (wind.direction > 0) {
