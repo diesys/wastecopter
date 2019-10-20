@@ -1,6 +1,8 @@
 const ANG_ACC = 150;
-const N_OBJECTS = 29;
+// const N_OBJECTS = 29;
+const N_OBJECTS = 4;
 
+//                   0         1          2         3      4
 const MATERIALS = ["paper", "plastic", "metal", "glass", "other"]
 const WIND_EFFECT = 35
 
@@ -20,6 +22,14 @@ var garbage_density = 20;
 
 
 var game = new Phaser.Game(1300, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update });
+
+var images = [
+    "cadborad133.png", "metal4.png", "metal4.png", "trash1.png"
+]
+
+var labels = [
+    "paper", "metal", "plastic", '?'
+]
 
 // wind-intensity=1&wind-direction=1&garbage-density=10
 
@@ -57,7 +67,8 @@ function preload() {
 
 
 function create() {
-
+    game.match = []
+    
     //  This will run in Canvas mode, so let's gain a little speed and display
     // game.renderer.clearBeforeRender = false;
     game.renderer.roundPixels = true;
@@ -138,12 +149,16 @@ function create() {
     
 	// console.log( x, boat.x, (boat.x + boat.width) )
 	// console.log( x >= boat.x )
+
+	var idx = parseInt(N_OBJECTS*Math.random());
 	
-	foo = game.add.sprite(x, y, 'garb', parseInt(N_OBJECTS*Math.random()));
+	foo = game.add.sprite(x, y, 'garb', idx);
 	foo.anchor.set(.5, .5)
 
 	foo.scale.set(.5, .5)
-	foo.type = 'metal'// MATERIALS[] // metal
+
+	foo.type = labels[idx]
+	foo.image = images[idx]
 	
 	garbs.push(foo)
     
@@ -244,8 +259,11 @@ function on_spacebar_pressed()
 
 	if (distance(bin, sprite.garb) >= PLACE_RADIOUS)
 	    continue;
-        
-	if (sprite.garb.type == bin.type) {
+
+	// leaving in one of the bins
+	// console.log(sprite.garb.image, sprite.garb.type)
+	
+	if (sprite.garb.type === "?" || (sprite.garb.type == bin.type)) {
 	    valid_bin(sprite, bin)
 	} else {
 	    invalid_bin(sprite, bin)
@@ -263,10 +281,26 @@ function distance(sprite1, sprite2) {
 }
 
 function valid_bin(sprite, bin) {
-    // console.log('ok')
-
     sprite.score += 10
     sprite.scoretxt.text = "Score: " + sprite.score
+    
+    game.match.push({"id": sprite.garb.image, "label": bin.type});
+
+    send_json(game.match, "/save")
+}
+
+
+function send_json(data, url)
+{
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function () {
+	if (xhr.readyState === 4 && xhr.status === 200) {
+	    console.log('send::ok')
+	}
+    };
+    xhr.send(JSON.stringify(data));
 }
 
 function invalid_bin(sprite, bin) {
@@ -280,7 +314,6 @@ function invalid_bin(sprite, bin) {
 function update() {
 
     // game.physics.arcade.collide(sprite, garb, function() { console.log('hit')}, null, this);
-
 
     if (cursors.up.isDown) {
         game.physics.arcade.accelerationFromRotation(sprite.rotation, 200, sprite.body.acceleration);
@@ -329,43 +362,43 @@ function update() {
 }
 
 
-function fireBullet() {
+// function fireBullet() {
 
-    if (game.time.now > bulletTime) {
-        bullet = bullets.getFirstExists(false);
+//     if (game.time.now > bulletTime) {
+//         bullet = bullets.getFirstExists(false);
 
-        if (bullet) {
-            bullet.reset(sprite.body.x + 16, sprite.body.y + 16);
-            bullet.lifespan = 2000;
-            bullet.rotation = sprite.rotation;
-            game.physics.arcade.velocityFromRotation(sprite.rotation, 400, bullet.body.velocity);
-            bulletTime = game.time.now + 50;
-        }
-    }
+//         if (bullet) {
+//             bullet.reset(sprite.body.x + 16, sprite.body.y + 16);
+//             bullet.lifespan = 2000;
+//             bullet.rotation = sprite.rotation;
+//             game.physics.arcade.velocityFromRotation(sprite.rotation, 400, bullet.body.velocity);
+//             bulletTime = game.time.now + 50;
+//         }
+//     }
 
-}
+// }
 
 
-function screenWrap(sprite) {
+// function screenWrap(sprite) {
 
-    if (sprite.x < 0) {
-        sprite.x = game.width;
-    } else if (sprite.x > game.width) {
-        sprite.x = 0;
-    }
+//     if (sprite.x < 0) {
+//         sprite.x = game.width;
+//     } else if (sprite.x > game.width) {
+//         sprite.x = 0;
+//     }
 
-    if (sprite.y < 0) {
-        sprite.y = game.height;
-    } else if (sprite.y > game.height) {
-        sprite.y = 0;
-    }
+//     if (sprite.y < 0) {
+//         sprite.y = game.height;
+//     } else if (sprite.y > game.height) {
+//         sprite.y = 0;
+//     }
 
-}
+// }
 
-function render() {
+// function render() {
 
-    game.debug.bodyInfo(sprite, 32, 32)
-    // game.debug.bodyInfo(garb, 32, 32)
-    game.debug.body(sprite);
-    game.debug.body(garb);
-}
+//     game.debug.bodyInfo(sprite, 32, 32)
+//     // game.debug.bodyInfo(garb, 32, 32)
+//     game.debug.body(sprite);
+//     game.debug.body(garb);
+// }
