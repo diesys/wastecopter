@@ -13,12 +13,12 @@ from tensorflow.python.keras.backend import set_session
 
 app = Flask(__name__)
 
-# app.config['UPLOADED_PHOTOS_DEST'] = os.getcwd()
+app.config['UPLOADED_PHOTOS_DEST'] = os.getcwd()
 
 
 photos = UploadSet('photos', IMAGES)
 
-# configure_uploads(app, photos)
+configure_uploads(app, photos)
 
 # tf_config = some_custom_config
 sess = tf.Session()
