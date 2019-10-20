@@ -24,11 +24,15 @@ var garbage_density = 20;
 var game = new Phaser.Game(1300, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update });
 
 var images = [
-    "cadborad133.png", "metal4.png", "metal4.png", "trash1.png"
+    "cadborad133.png", "cardboard132.png", "cardboard154.png", "glass152.png", "glass153.png", "glass154.png",
+    "glass155.png", "metal1.png", "metal2.png", "metal3.png", "metal4.png", "paper1.png", "paper2.png",
+    "paper3.png", "paper4.png", "paper5.png", "plastic1.png", "plastic2.png", "plastic3.png", "plastic4.png",
+    "trash1.png", "trash2.png", "trash3.png", "trash4.png"
 ]
 
 var labels = [
-    "paper", "metal", "plastic", '?'
+    "paper", "paper", "paper", "glass", "glass", "glass", "glass", "metal", "metal", "metal", "metal", "paper", "paper",
+    "paper", "paper", "paper", "plastic", "plastic", "plastic", "plastic", "plastic", "other", "other", "other", "other"
 ]
 
 // wind-intensity=1&wind-direction=1&garbage-density=10
@@ -52,7 +56,7 @@ function preload() {
     game.load.image('bullet', 'assets/bullet11.png');
     // game.load.image('ship', 'assets/ship.png');
     // game.load.image('garb', 'assets/garb.png');
-    game.load.spritesheet('garb', 'img/objects/montage.png', 130, 130, N_OBJECTS);
+    game.load.spritesheet('garb', 'assets/montage.png', 128, 128, N_OBJECTS);
     game.load.image('ship', 'assets/quadcopter.png');
     // game.load.image('boat', 'assets/boat.png');
     game.load.image('boat', 'assets/platform.png');
