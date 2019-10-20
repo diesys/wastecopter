@@ -2,11 +2,39 @@ const ANG_ACC = 150;
 const N_OBJECTS = 29;
 
 const MATERIALS = ["paper", "plastic", "metal", "glass", "other"]
-const WIND_EFFECT = 15
+const WIND_EFFECT = 35
 
 var wind = {'direction': 1, 'intensity': 3}
+var sprite;
+var cursors;
+
+var bullet;
+var bullets;
+var bulletTime = 0;
+
+
+var garb;
+var bins = [];
+
+var garbage_density = 20;
+
 
 var game = new Phaser.Game(1300, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update });
+
+// wind-intensity=1&wind-direction=1&garbage-density=10
+
+function onload() {
+    var url = new URL(window.location.href);
+    var wind_intensity = url.searchParams.get("wind-intensity");
+    var wind_direction = url.searchParams.get("wind-direction");
+    var g_density = url.searchParams.get("garbage-density");
+    // console.log(wind_intensity, wind_direction, garbage_density);
+
+    wind.direction=wind_direction;
+    wind.intensity=wind_intensity;
+
+    garbage_density= g_density;
+}
 
 function preload() {
 
@@ -27,18 +55,6 @@ function preload() {
     game.load.image('corona', 'assets/blue.png');
 }
 
-var sprite;
-var cursors;
-
-var bullet;
-var bullets;
-var bulletTime = 0;
-
-
-var garb;
-var bins = [];
-
-var garbage_density = 20;
 
 function create() {
 
