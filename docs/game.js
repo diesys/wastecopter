@@ -117,7 +117,7 @@ function create() {
     bullets.setAll('anchor.y', 0.5);
 
     // Populate board
-    boat = game.add.sprite(500, 100, 'boat');
+    var boat = game.add.sprite(500, 100, 'boat');
     // boat.anchor.set(.5, .5)
 
     var binDict = {"paper": [527, 143], "plastic": [623,184], "metal": [635,282], "glass": [621,377], "other": [526,416]};
@@ -255,47 +255,6 @@ function create() {
 
     // add audio
     game.add.audio('bg_audio').loopFull();
-
-    // add timer
-    var spawn_time = 100 * 1/garbage_density
-    console.log('spawn time', spawn_time)
-    game.time.events.repeat(Phaser.Timer.SECOND * spawn_time, 10, spawn_garbage, this);
-}
-
-
-function spawn_garbage()
-{
-
-    const PADDING = 30;
-    var min_x = PADDING;
-    var max_x = game.canvas.width - PADDING;
-	
-    var min_y = PADDING + 60;
-    var max_y = game.canvas.height - PADDING;
-	
-    var is_on_platform = (x, y, boat) => (x >= (boat.x - PADDING)) && (x <= (boat.x + boat.width + PADDING)) && (y >= (boat.y - PADDING)) && (y <= (boat.y + boat.height + PADDING))
-    do {
-	x = (max_x - min_x)*Math.random() + min_x
-	y = (max_y - min_y)*Math.random() + min_y
-    } while (is_on_platform(x, y, boat))
-	
-    
-    var idx = parseInt(N_OBJECTS*Math.random());
-	
-    var garb = game.add.sprite(x, y, 'garb', idx);
-    garb.anchor.set(.5, .5)
-
-    garb.scale.set(.5, .5)
-
-    garb.type = labels[idx]
-    garb.image = images[idx]
-	
-    garbs.push(garb)
-    
-    game.add.tween(garb.scale).from({
-        x: 0,
-        y: 0
-    }, 1000, Phaser.Easing.Linear.None, true)
 }
 
 
@@ -366,8 +325,6 @@ function invalid_bin(sprite, bin) {
 function update() {
 
     // game.physics.arcade.collide(sprite, garb, function() { console.log('hit')}, null, this);
-
-    sprite.bringToTop()
 
     if (cursors.up.isDown) {
         game.physics.arcade.accelerationFromRotation(sprite.rotation, 200, sprite.body.acceleration);
