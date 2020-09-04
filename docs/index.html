@@ -1,0 +1,161 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>WasteCopter</title>
+    <meta name="description" content="WasteCopter - Game for NASA SapceApp Challenge 2019 - Pisa by LIFO">
+    <meta name="author" content="LIFO Team">
+    <script src="phaser.min.js"></script>
+    <script src="game.js"></script>
+    <script src="table.js"></script>
+    <script src="HealthBar.standalone.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+
+    <style>
+      html, body {
+        font-family: Raleway, Helvetica, sans-serif;
+      }
+
+      #topBar {
+        background: rgba(255,255,255,.9);
+      }
+
+      #projectIMG {
+        width: 100%;
+        height: 100%;
+        /* margin-bottom: 50px; */
+      }
+
+      #phaser-example > canvas {
+        min-width: 100%;
+      }
+      #button-area {
+        font-size: 12pt;
+      }
+
+      .w3-container * {
+        transition: all .3s;
+      }
+
+    </style>
+
+  </head>
+
+  <body class="w3-light" onload="onload()">
+
+    <!-- Top container -->
+    <div class="w3-bar w3-top w3-large" id="topBar" style="z-index:4">
+      <div id="button-area" class="w3-container w3-card">
+        <a class="w3-button w3-bar-item" style="font-weight:900;" href="#">WasteCopter</a>
+        <a class="w3-button w3-bar-item" href="index.html?wind-intensity=0&amp;wind-direction=1&amp;garbage-density=10">Atlantic Ocean - Summer</a>
+        <a class="w3-button w3-bar-item" href="index.html?wind-intensity=0&amp;wind-direction=-1&amp;garbage-density=20">Indian Ocean - Summer</a>
+        <a class="w3-button w3-bar-item" href="index.html?wind-intensity=1&amp;wind-direction=1&amp;garbage-density=30">Pacific Ocean - Summer</a>
+        <a class="w3-button w3-bar-item" href="index.html?wind-intensity=3&amp;wind-direction=1&amp;garbage-density=10">Atlantic Ocean - Winter</a>
+        <a class="w3-button w3-bar-item" href="presentation.html">Slides</a>
+        </div>
+    </div>
+
+    <!-- !PAGE CONTENT! -->
+    <div class="w3-main">
+
+      <center>
+
+        <img src="img/projectIMG.png" id="projectIMG" alt="WasteCopter image">
+
+        <!-- GAME CANVAS -->
+        <div id="phaser-example"></div>
+      </center>
+
+      <!-- Header -->
+      <!-- <header class="w3-container" style="padding-top:22px">
+        <h5><b><i class="fa fa-info-circle"></i> Data icons</b></h5>
+      </header> -->
+
+      <!-- <div class="w3-row-padding w3-margin-bottom">
+        <div class="w3-third">
+          <div class="w3-container w3-amber w3-padding-16 w3-margin">
+            <div class="w3-left"><i class="fa fa-scroll w3-xxxlarge"></i></div>
+            <div class="w3-right">
+              <h3 id="count_paper"></h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h4>Paper</h4>
+          </div>
+        </div>
+        <div class="w3-third">
+          <div class="w3-container w3-green w3-padding-16 w3-margin">
+            <div class="w3-left"><i class="fa fa-wine-bottle w3-xxxlarge"></i></div>
+            <div class="w3-right">
+              <h3 id="count_glass"></h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h4>Glass</h4>
+          </div>
+        </div>
+        <div class="w3-third">
+          <div class="w3-container w3-red w3-padding-16 w3-margin">
+            <div class="w3-left"><i class="fa fa-shield-alt w3-xxxlarge"></i></div>
+            <div class="w3-right">
+              <h3 id="count_metal"></h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h4>Metal</h4>
+          </div>
+        </div>
+        <div class="w3-half">
+          <div class="w3-container w3-blue w3-padding-16 w3-margin">
+            <div class="w3-left"><i class="fa fa-prescription-bottle w3-xxxlarge"></i></div>
+            <div class="w3-right">
+              <h3 id="count_plastic"></h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h4>Plastic</h4>
+          </div>
+        </div>
+        <div class="w3-half">
+          <div class="w3-container w3-gray w3-text-white w3-padding-16 w3-margin">
+            <div class="w3-left"><i class="fa fa-question-circle w3-xxxlarge"></i></div>
+            <div class="w3-right">
+              <h3 id="count_other"></h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h4>Other</h4>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- <div class="w3-container">
+        <h5>Data bar</h5>
+        <div class="w3-grey">
+          <div class="w3-container w3-center w3-padding w3-green" style="width:25%">+25%</div>
+        </div>
+      </div>
+      <hr> -->
+
+      <div class="w3-container">
+        <h5>User selection data</h5>
+        <table id="table" class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white"></table>
+        <br>
+        <!-- <button class="w3-button w3-dark-grey">More Countries  <i class="fa fa-arrow-right"></i></button> -->
+      </div>
+      <hr>
+
+      <!-- Footer -->
+      <footer class="w3-container w3-padding-16 w3-light-grey">
+        <center>
+          <h4><a href="https://2019.spaceappschallenge.org/challenges/earths-oceans/trash-cleanup/teams/lifo/members">LIFO Team</a> @ <a href="https://www.nasa.gov">NASA</a> SpaceApps Challenge 2019 - Pisa</h4>
+          <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a>, <a href="https://phaser.io">Phaser</a> and <a href="https://fontawesome.com">FontAwesome</a></p>
+        </center>
+        </footer>
+
+    </div>
+
+  </body>
+
+  </html>
+
